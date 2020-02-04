@@ -1,6 +1,7 @@
 abstract class Object2D{
   
   protected ArrayList<Force> forces;
+  protected Force netForce;
   protected float mass;
   
   protected PVector pos;
@@ -8,24 +9,32 @@ abstract class Object2D{
   protected PVector acc;
   
   public Object2D(PVector pos, PVector vel, PVector acc){
+    this.forces = new ArrayList<Force>();
+    this.netForce = new Force(0, 0);
     this.pos = pos;
     this.vel = vel;
     this.acc = acc;
   }
   
   public Object2D(PVector pos, PVector vel){
+    this.forces = new ArrayList<Force>();
+    this.netForce = new Force(0, 0);
     this.pos = pos;
     this.vel = vel;
     this.acc = new PVector(0,0);
   }
   
   public Object2D(PVector pos){
+    this.forces = new ArrayList<Force>();
+    this.netForce = new Force(0, 0);
     this.pos = pos;
     this.vel = new PVector(0,0);
     this.acc = new PVector(0,0);
   }
   
   public Object2D(){
+    this.forces = new ArrayList<Force>();
+    this.netForce = new Force(0, 0);
     this.pos = new PVector(0,0);
     this.vel = new PVector(0,0);
     this.acc = new PVector(0,0);
@@ -53,8 +62,18 @@ abstract class Object2D{
     }
   }
   
+  public void addExternalForces(ArrayList<Force> forces){
+    for(Force force: forces){
+      this.forces.add(force);
+    }
+  }
+  
+  protected void calculateNetForce(){
+    this.netForce.sum(this.forces);
+  }
+  
   protected void updateMotionVectors(){
-    //Awaiting implementation of Force 
+    //TODO
   }
   
   public abstract void calculateNetForce(PVector setpoint);
