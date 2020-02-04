@@ -73,10 +73,21 @@ abstract class Object2D{
   }
   
   protected void updateMotionVectors(){
-    //TODO
+    pos.add(vel);
+    vel.add(acc);
+    acc.set(this.applyForce());
   }
   
-  public abstract void calculateNetForce(PVector setpoint);
+  protected PVector applyForce(){
+    //TODO
+    Force x = this.netForce.x();
+    Force y = this.netForce.y();
+    float xAcc = x.vector().x / this.mass;
+    float yAcc = y.vector().y / this.mass;
+    PVector resultantAcceleration = new PVector(xAcc, yAcc);
+    return resultantAcceleration;
+  }
+  
   public abstract void draw();
   
 }

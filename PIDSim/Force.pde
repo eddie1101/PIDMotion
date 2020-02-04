@@ -56,4 +56,12 @@ class Force{
     }
   }
   
+  public Force x(){
+    return new Force(this.force.x, 0);
+  }
+  
+  public Force y(){
+    return new Force(0, this.force.y);
+  }
+  
 }
