@@ -16,17 +16,16 @@ class PIDController extends Trajectory{
   }
   
   @Override
-  public void draw(){
-    this.updateSetpoint();
-    this.applySetpoint();
-    object.draw();
+  public void update(){
+    this.calculateSetpoint();
+    object.update();
   }
   
   @Override
-  protected void updateSetpoint(){
+  protected void calculateSetpoint(){
     position_error_x += (object.getPos().x - target.x);
     position_error_y += (object.getPos().y - target.y);
-    this.accSetpoint.set(-p * (object.getPos().x - target.x) - (d * object.getVel().x) - (i * position_error_x), -p * (object.getPos().y - target.y) - (d * object.getVel().y) - (i * position_error_y));
+    this.forceSetpoint.setVector(-p * (object.getPos().x - target.x) - (d * object.getVel().x) - (i * position_error_x), -p * (object.getPos().y - target.y) - (d * object.getVel().y) - (i * position_error_y));
   }
   
 }

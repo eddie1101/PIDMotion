@@ -5,17 +5,18 @@ abstract class Trajectory{
   protected float d = 0;
   
   protected PVector target;
-  protected PVector accSetpoint;
+  protected Force forceSetpoint;
   protected Object2D object;
   
   public Trajectory(Object2D object){
     this.object = object;
-    this.accSetpoint = new PVector(0, 0);
+    this.forceSetpoint = new Force(0, 0);
+    this.object.addExternalForce(this.forceSetpoint);
     this.target = new PVector(object.getPos().x, object.getPos().y);
   }
   
-  public PVector getSetpoint(){
-    return this.accSetpoint;
+  public Force getSetpoint(){
+    return this.forceSetpoint;
   }
   
   public void setTarget(PVector target){
@@ -29,11 +30,7 @@ abstract class Trajectory{
     this.d = d;
   }
   
-  protected void applySetpoint(){
-    //Awaiting implementation of Force
-  }
-  
-  public abstract void draw();
-  protected abstract void updateSetpoint();
+  protected abstract void calculateSetpoint();
+  public abstract void update();
   
 }

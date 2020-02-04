@@ -22,6 +22,10 @@ class Force{
     this.force.set(force);
   }
   
+  public void setVector(float x, float y){
+    this.force.set(new PVector(x, y));
+  }
+  
   public void addVector(Force force){
     this.force.add(force.vector());
   }

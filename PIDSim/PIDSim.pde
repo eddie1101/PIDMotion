@@ -11,7 +11,7 @@ void setup(){
 
 void draw(){
   background(255);
-  traj.draw();
+  traj.update();
   if(target != null){
     fill(255, 0, 0);
     ellipse(target.x, target.y, 10, 10);

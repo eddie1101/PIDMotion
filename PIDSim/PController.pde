@@ -5,15 +5,14 @@ class PController extends Trajectory{
   }
   
   @Override
-  public void draw(){
-    this.updateSetpoint();
-    this.applySetpoint();
-    object.draw();
+  public void update(){
+    this.calculateSetpoint();
+    object.update();
   }
   
   @Override
-  protected void updateSetpoint(){
-    this.accSetpoint.set(-p * (object.getPos().x - target.x), -p * (object.getPos().y - target.y));
+  protected void calculateSetpoint(){
+    this.forceSetpoint.setVector(-p * (object.getPos().x - target.x), -p * (object.getPos().y - target.y));
   }
   
 }

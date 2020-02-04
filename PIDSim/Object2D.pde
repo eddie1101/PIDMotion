@@ -79,7 +79,6 @@ abstract class Object2D{
   }
   
   protected PVector applyForce(){
-    //TODO
     Force x = this.netForce.x();
     Force y = this.netForce.y();
     float xAcc = x.vector().x / this.mass;
@@ -88,6 +87,6 @@ abstract class Object2D{
     return resultantAcceleration;
   }
   
-  public abstract void draw();
+  public abstract void update();
   
 }
