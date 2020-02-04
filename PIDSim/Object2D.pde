@@ -88,5 +88,6 @@ abstract class Object2D{
   }
   
   public abstract void update();
+  protected abstract void draw();
   
 }

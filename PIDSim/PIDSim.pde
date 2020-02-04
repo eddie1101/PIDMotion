@@ -1,23 +1,27 @@
+Object2D puck;
 Trajectory traj;
 PVector target;
 
 void setup(){
   size(1200, 900);
-  frameRate(30);
+  frameRate(3);
   
-  //Initialize traj with a non-null Object2D here.
+  puck = new Puck(new PVector(width/2, height/2));
+  traj = new PDController(puck);
+  traj.setConstants(0.1, 0.005, 1.0);
   
 }
 
 void draw(){
   background(255);
+  System.out.println();
   traj.update();
   if(target != null){
     fill(255, 0, 0);
     ellipse(target.x, target.y, 10, 10);
   }
   fill(0);
-  text("Setpoint: " + traj.getSetpoint(),20, 20);
+  text("Setpoint: " + traj.getSetpoint().vector().x + " " + traj.getSetpoint().vector().y,20, 20);
 }
 
 void mouseReleased(){

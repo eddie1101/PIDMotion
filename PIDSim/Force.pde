@@ -51,6 +51,7 @@ class Force{
   public void sum(ArrayList<Force> forces){
     for(Force force: forces){
       this.addVector(force);
+      System.out.println("Force Vectors: " + force.vector().x + ", " + force.vector().y);
     }
   }
   
