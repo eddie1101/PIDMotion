@@ -113,11 +113,7 @@ public abstract class Object2D {
 
     public final void calculateNetForce(){
         netForce = Force.sum(this.externalForces);
-        if(Math.abs(friction.mag()) <= Math.abs(netForce.mag())){
-            netForce = Force.sum(netForce, friction);
-        }else{
-            netForce = friction;
-        }
+        netForce.addVector(this.friction);
     }
 
     protected final void updateMotionVectors(){

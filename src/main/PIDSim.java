@@ -1,5 +1,6 @@
 package main;
 
+import controller.PController;
 import controller.PDController;
 import controller.Controller;
 import controller.PIDController;
@@ -7,6 +8,7 @@ import objects.SampleObject;
 import objects.Object2D;
 
 import physics.Environment;
+import physics.Force;
 import physics.SampleEnvironment;
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -23,10 +25,11 @@ public class PIDSim extends PApplet {
 
     public void setup(){
         object = new SampleObject(this, new PVector(width/2f, height/2f));
-        controller = new PDController(this, object);
-        controller.setConstants(0.01f, 0.00005f, 0.2f);
-        environment = new SampleEnvironment(0.2f, 4);
+        controller = new PIDController(this, object);
+        controller.setConstants(0.005f, 0.00002f, 0.02f);
+        environment = new SampleEnvironment(0.05f, 3);
         environment.addObject(object);
+        environment.addEnvironmentForce(new Force(-1, 0.5f));
     }
 
     public void draw(){

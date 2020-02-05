@@ -26,14 +26,10 @@ public abstract class Environment {
 
     protected final PVector calculateFrictionVector(Object2D object){
         float mag = (object.mass() * g) * uFric;
-        PVector heading = object.vel();
-
-        boolean calculate = heading.mag() == 0f;
-
-        float fRatio = calculate? 0 : (Math.min(Math.abs(mag), Math.abs(heading.mag())) / heading.mag());
-        float x_comp = heading.mag() == 0f? 0 : fRatio * (heading.x / heading.mag());
-        float y_comp = heading.mag() == 0f? 0 : fRatio * (heading.y / heading.mag());
-        return new PVector(-x_comp, -y_comp);
+        PVector heading = new PVector().set(object.vel());
+        heading.mult(-1);
+        heading.normalize();
+        return new PVector().set(heading).mult(mag);
     }
 
     protected final void updateFrictionVectors(){
