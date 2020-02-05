@@ -1,9 +1,12 @@
-package java;
+package controller;
 
-class PController extends Trajectory{
+import objects.Object2D;
+import processing.core.PApplet;
 
-    public PController(Object2D object){
-        super(object);
+public class PController extends Controller {
+
+    public PController(PApplet pa, Object2D object){
+        super(pa, object);
     }
 
     @Override

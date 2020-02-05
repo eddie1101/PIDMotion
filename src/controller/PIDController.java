@@ -1,14 +1,16 @@
-package java;
+package controller;
 
+import objects.Object2D;
+import processing.core.PApplet;
 import processing.core.PVector;
 
-class PIDController extends Trajectory {
+public class PIDController extends Controller {
 
     private float position_error_x = 0;
     private float position_error_y = 0;
 
-    public PIDController(Object2D object){
-        super(object);
+    public PIDController(PApplet pa, Object2D object){
+        super(pa, object);
     }
 
     @Override

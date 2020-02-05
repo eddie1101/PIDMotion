@@ -1,13 +1,13 @@
-package java;
+package objects;
 
 import processing.core.*;
 
-class Puck extends Object2D {
+public class Puck extends Object2D {
 
     private final int r = 15;
 
-    public Puck(PVector pos){
-        super(pos);
+    public Puck(PApplet pa, PVector pos){
+        super(pa, pos);
     }
 
     public void update(){
@@ -16,11 +16,10 @@ class Puck extends Object2D {
         this.draw();
     }
 
-
     public void draw(){
-        stroke(0);
-        fill(0);
-        ellipse(pos.x, pos.y, r, r);
+        graphics.stroke(0);
+        graphics.fill(0);
+        graphics.ellipse(pos.x, pos.y, r, r);
     }
 
 }

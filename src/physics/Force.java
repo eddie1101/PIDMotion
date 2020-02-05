@@ -1,10 +1,10 @@
-package java;
+package physics;
 
 import processing.core.PVector;
 
 import java.util.ArrayList;
 
-class Force{
+public class Force{
 
     protected PVector force;
 
@@ -57,7 +57,7 @@ class Force{
     public void sum(ArrayList<Force> forces){
         for(Force force: forces){
             this.addVector(force);
-            System.out.println("Force Vectors: " + force.vector().x + ", " + force.vector().y);
+            System.out.println("physics.Force Vectors: " + force.vector().x + ", " + force.vector().y);
         }
     }
 

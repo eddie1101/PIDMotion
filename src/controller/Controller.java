@@ -1,9 +1,13 @@
-package java;
+package controller;
 
+import objects.Object2D;
+import physics.Force;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-abstract class Trajectory extends PApplet {
+public abstract class Controller {
+
+    protected PApplet graphics;
 
     protected float p = 0;
     protected float i = 0;
@@ -13,7 +17,8 @@ abstract class Trajectory extends PApplet {
     protected Force forceSetpoint;
     protected Object2D object;
 
-    public Trajectory(Object2D object){
+    public Controller(PApplet pa, Object2D object){
+        this.graphics = pa;
         this.object = object;
         this.forceSetpoint = new Force(0, 0);
         this.object.addExternalForce(this.forceSetpoint);

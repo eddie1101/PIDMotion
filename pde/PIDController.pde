@@ -1,9 +1,9 @@
-class PIDController extends Trajectory{
+class controller.PIDController extends controller.Controller{
   
   private float position_error_x = 0;
   private float position_error_y = 0;
   
-  public PIDController(Object2D object){
+  public controller.PIDController(objects.Object2D object){
     super(object); 
   }
   

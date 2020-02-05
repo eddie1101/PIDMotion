@@ -1,11 +1,14 @@
-package java;
+package objects;
 
+import physics.Force;
 import processing.core.PApplet;
 import processing.core.PVector;
 
 import java.util.ArrayList;
 
-abstract class Object2D extends PApplet {
+public abstract class Object2D {
+
+    protected PApplet graphics;
 
     protected ArrayList<Force> forces;
     protected Force netForce;
@@ -15,7 +18,8 @@ abstract class Object2D extends PApplet {
     protected PVector vel;
     protected PVector acc;
 
-    public Object2D(PVector pos, PVector vel, PVector acc){
+    public Object2D(PApplet pa, PVector pos, PVector vel, PVector acc){
+        this.graphics = pa;
         this.forces = new ArrayList<Force>();
         this.netForce = new Force(0, 0);
         this.pos = pos;
@@ -23,7 +27,8 @@ abstract class Object2D extends PApplet {
         this.acc = acc;
     }
 
-    public Object2D(PVector pos, PVector vel){
+    public Object2D(PApplet pa, PVector pos, PVector vel){
+        this.graphics = pa;
         this.forces = new ArrayList<Force>();
         this.netForce = new Force(0, 0);
         this.pos = pos;
@@ -31,7 +36,8 @@ abstract class Object2D extends PApplet {
         this.acc = new PVector(0,0);
     }
 
-    public Object2D(PVector pos){
+    public Object2D(PApplet pa, PVector pos){
+        this.graphics = pa;
         this.forces = new ArrayList<Force>();
         this.netForce = new Force(0, 0);
         this.pos = pos;
@@ -39,7 +45,8 @@ abstract class Object2D extends PApplet {
         this.acc = new PVector(0,0);
     }
 
-    public Object2D(){
+    public Object2D(PApplet pa){
+        this.graphics = pa;
         this.forces = new ArrayList<Force>();
         this.netForce = new Force(0, 0);
         this.pos = new PVector(0,0);

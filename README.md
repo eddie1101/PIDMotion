@@ -1,2 +1,2 @@
 # PIDMotion
-Effects of different motion controllers in varying simulated physics environments.
+Effects of different motion controller in varying simulated physics environments.

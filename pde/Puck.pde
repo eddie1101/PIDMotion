@@ -1,8 +1,8 @@
-class Puck extends Object2D{
+class objects.Puck extends objects.Object2D{
   
   private final int r = 15;
   
-  public Puck(PVector pos){
+  public objects.Puck(PVector pos){
     super(pos);
   }
   

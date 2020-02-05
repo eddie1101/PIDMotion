@@ -1,21 +1,21 @@
-abstract class Trajectory{
+abstract class controller.Controller{
   
   protected float p = 0;
   protected float i = 0;
   protected float d = 0;
   
   protected PVector target;
-  protected Force forceSetpoint;
-  protected Object2D object;
+  protected physics.Force forceSetpoint;
+  protected objects.Object2D object;
   
-  public Trajectory(Object2D object){
+  public controller.Controller(objects.Object2D object){
     this.object = object;
-    this.forceSetpoint = new Force(0, 0);
+    this.forceSetpoint = new physics.Force(0, 0);
     this.object.addExternalForce(this.forceSetpoint);
     this.target = new PVector(object.getPos().x, object.getPos().y);
   }
   
-  public Force getSetpoint(){
+  public physics.Force getSetpoint(){
     return this.forceSetpoint;
   }
   

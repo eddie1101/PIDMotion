@@ -1,13 +1,13 @@
-Object2D puck;
-Trajectory traj;
+objects.Object2D puck;
+controller.Controller traj;
 PVector target;
 
 void setup(){
   size(1200, 900);
   frameRate(3);
   
-  puck = new Puck(new PVector(width/2, height/2));
-  traj = new PDController(puck);
+  puck = new objects.Puck(new PVector(width/2, height/2));
+  traj = new controller.PDController(puck);
   traj.setConstants(0.1, 0.005, 1.0);
   
 }

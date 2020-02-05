@@ -1,40 +1,40 @@
-abstract class Object2D{
+abstract class objects.Object2D{
   
-  protected ArrayList<Force> forces;
-  protected Force netForce;
+  protected ArrayList<physics.Force> forces;
+  protected physics.Force netForce;
   protected float mass;
   
   protected PVector pos;
   protected PVector vel;
   protected PVector acc;
   
-  public Object2D(PVector pos, PVector vel, PVector acc){
-    this.forces = new ArrayList<Force>();
-    this.netForce = new Force(0, 0);
+  public objects.Object2D(PVector pos, PVector vel, PVector acc){
+    this.forces = new ArrayList<physics.Force>();
+    this.netForce = new physics.Force(0, 0);
     this.pos = pos;
     this.vel = vel;
     this.acc = acc;
   }
   
-  public Object2D(PVector pos, PVector vel){
-    this.forces = new ArrayList<Force>();
-    this.netForce = new Force(0, 0);
+  public objects.Object2D(PVector pos, PVector vel){
+    this.forces = new ArrayList<physics.Force>();
+    this.netForce = new physics.Force(0, 0);
     this.pos = pos;
     this.vel = vel;
     this.acc = new PVector(0,0);
   }
   
-  public Object2D(PVector pos){
-    this.forces = new ArrayList<Force>();
-    this.netForce = new Force(0, 0);
+  public objects.Object2D(PVector pos){
+    this.forces = new ArrayList<physics.Force>();
+    this.netForce = new physics.Force(0, 0);
     this.pos = pos;
     this.vel = new PVector(0,0);
     this.acc = new PVector(0,0);
   }
   
-  public Object2D(){
-    this.forces = new ArrayList<Force>();
-    this.netForce = new Force(0, 0);
+  public objects.Object2D(){
+    this.forces = new ArrayList<physics.Force>();
+    this.netForce = new physics.Force(0, 0);
     this.pos = new PVector(0,0);
     this.vel = new PVector(0,0);
     this.acc = new PVector(0,0);
@@ -52,18 +52,18 @@ abstract class Object2D{
     return acc;
   }
   
-  public void addExternalForce(Force force){
+  public void addExternalForce(physics.Force force){
     this.forces.add(force);
   }
   
-  public void addExternalForces(Force... forces){
-    for(Force force: forces){
+  public void addExternalForces(physics.Force... forces){
+    for(physics.Force force: forces){
       this.forces.add(force);
     }
   }
   
-  public void addExternalForces(ArrayList<Force> forces){
-    for(Force force: forces){
+  public void addExternalForces(ArrayList<physics.Force> forces){
+    for(physics.Force force: forces){
       this.forces.add(force);
     }
   }
@@ -79,8 +79,8 @@ abstract class Object2D{
   }
   
   protected PVector applyForce(){
-    Force x = this.netForce.x();
-    Force y = this.netForce.y();
+    physics.Force x = this.netForce.x();
+    physics.Force y = this.netForce.y();
     float xAcc = x.vector().x / this.mass;
     float yAcc = y.vector().y / this.mass;
     PVector resultantAcceleration = new PVector(xAcc, yAcc);

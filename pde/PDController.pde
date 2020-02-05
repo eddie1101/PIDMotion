@@ -1,6 +1,6 @@
-class PDController extends Trajectory{
+class controller.PDController extends controller.Controller{
   
-  public PDController(Object2D object){
+  public controller.PDController(objects.Object2D object){
     super(object); 
   }
   
