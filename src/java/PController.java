@@ -1,4 +1,4 @@
-package src.java;
+package java;
 
 class PController extends Trajectory{
 

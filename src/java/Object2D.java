@@ -1,4 +1,4 @@
-package src.java;
+package java;
 
 import processing.core.PApplet;
 import processing.core.PVector;

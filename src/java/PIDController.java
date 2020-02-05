@@ -1,8 +1,8 @@
-package src.java;
+package java;
 
 import processing.core.PVector;
 
-class PIDController extends Trajectory{
+class PIDController extends Trajectory {
 
     private float position_error_x = 0;
     private float position_error_y = 0;

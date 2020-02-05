@@ -1,4 +1,4 @@
-package src.java;
+package java;
 
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -35,7 +35,7 @@ public class PIDSim extends PApplet {
         traj.setTarget(target);
     }
 
-    public static void main(String[] args) {
+    public static void main(String... args) {
         PApplet.main("PIDSim");
     }
 }
