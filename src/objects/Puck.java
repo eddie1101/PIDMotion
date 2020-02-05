@@ -7,7 +7,7 @@ public class Puck extends Object2D {
     private final int r = 15;
 
     public Puck(PApplet pa, PVector pos){
-        super(pa, pos);
+        super(pa, 3, pos);
     }
 
     public void update(){

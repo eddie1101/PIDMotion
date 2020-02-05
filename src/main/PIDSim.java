@@ -18,7 +18,7 @@ public class PIDSim extends PApplet {
     }
 
     public void setup(){
-        puck = new Puck(this, new PVector(width/2, height/2));
+        puck = new Puck(this, new PVector(width/2f, height/2f));
         controller = new PDController(this, puck);
         controller.setConstants(0.1f, 0.005f, 1.0f);
     }

@@ -18,37 +18,41 @@ public abstract class Object2D {
     protected PVector vel;
     protected PVector acc;
 
-    public Object2D(PApplet pa, PVector pos, PVector vel, PVector acc){
+    public Object2D(PApplet pa, float mass, PVector pos, PVector vel, PVector acc){
         this.graphics = pa;
         this.forces = new ArrayList<Force>();
         this.netForce = new Force(0, 0);
+        this.mass = mass;
         this.pos = pos;
         this.vel = vel;
         this.acc = acc;
     }
 
-    public Object2D(PApplet pa, PVector pos, PVector vel){
+    public Object2D(PApplet pa, float mass, PVector pos, PVector vel){
         this.graphics = pa;
         this.forces = new ArrayList<Force>();
         this.netForce = new Force(0, 0);
+        this.mass = mass;
         this.pos = pos;
         this.vel = vel;
         this.acc = new PVector(0,0);
     }
 
-    public Object2D(PApplet pa, PVector pos){
+    public Object2D(PApplet pa, float mass, PVector pos){
         this.graphics = pa;
         this.forces = new ArrayList<Force>();
         this.netForce = new Force(0, 0);
+        this.mass = mass;
         this.pos = pos;
         this.vel = new PVector(0,0);
         this.acc = new PVector(0,0);
     }
 
-    public Object2D(PApplet pa){
+    public Object2D(PApplet pa, float mass){
         this.graphics = pa;
         this.forces = new ArrayList<Force>();
         this.netForce = new Force(0, 0);
+        this.mass = mass;
         this.pos = new PVector(0,0);
         this.vel = new PVector(0,0);
         this.acc = new PVector(0,0);
@@ -64,6 +68,10 @@ public abstract class Object2D {
 
     public PVector getAcc(){
         return acc;
+    }
+
+    protected void setMass(float mass){
+        this.mass = mass;
     }
 
     public void addExternalForce(Force force){
