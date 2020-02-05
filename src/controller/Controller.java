@@ -7,7 +7,7 @@ import processing.core.PVector;
 
 public abstract class Controller {
 
-    protected PApplet graphics;
+    protected final PApplet graphics;
 
     protected float p = 0;
     protected float i = 0;
@@ -15,17 +15,17 @@ public abstract class Controller {
 
     protected PVector target;
     protected Force forceSetpoint;
-    protected Object2D object;
+    protected final Object2D object;
 
     public Controller(PApplet pa, Object2D object){
         this.graphics = pa;
         this.object = object;
         this.forceSetpoint = new Force(0, 0);
         this.object.addExternalForce(this.forceSetpoint);
-        this.target = new PVector(object.getPos().x, object.getPos().y);
+        this.target = new PVector(object.pos().x, object.pos().y);
     }
 
-    public Force getSetpoint(){
+    public final Force getSetpoint(){
         return this.forceSetpoint;
     }
 

@@ -1,8 +1,8 @@
-class objects.Puck extends objects.Object2D{
+class objects.SampleObject extends objects.Object2D{
   
   private final int r = 15;
   
-  public objects.Puck(PVector pos){
+  public objects.SampleObject(PVector pos){
     super(pos);
   }
   

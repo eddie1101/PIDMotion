@@ -8,9 +8,10 @@ import java.util.ArrayList;
 
 public abstract class Object2D {
 
-    protected PApplet graphics;
+    protected final PApplet graphics;
 
-    protected ArrayList<Force> forces;
+    protected ArrayList<Force> externalForces;
+    protected Force friction;
     protected Force netForce;
     protected float mass;
 
@@ -20,7 +21,7 @@ public abstract class Object2D {
 
     public Object2D(PApplet pa, float mass, PVector pos, PVector vel, PVector acc){
         this.graphics = pa;
-        this.forces = new ArrayList<Force>();
+        this.externalForces = new ArrayList<Force>();
         this.netForce = new Force(0, 0);
         this.mass = mass;
         this.pos = pos;
@@ -30,7 +31,7 @@ public abstract class Object2D {
 
     public Object2D(PApplet pa, float mass, PVector pos, PVector vel){
         this.graphics = pa;
-        this.forces = new ArrayList<Force>();
+        this.externalForces = new ArrayList<Force>();
         this.netForce = new Force(0, 0);
         this.mass = mass;
         this.pos = pos;
@@ -40,7 +41,7 @@ public abstract class Object2D {
 
     public Object2D(PApplet pa, float mass, PVector pos){
         this.graphics = pa;
-        this.forces = new ArrayList<Force>();
+        this.externalForces = new ArrayList<Force>();
         this.netForce = new Force(0, 0);
         this.mass = mass;
         this.pos = pos;
@@ -50,7 +51,7 @@ public abstract class Object2D {
 
     public Object2D(PApplet pa, float mass){
         this.graphics = pa;
-        this.forces = new ArrayList<Force>();
+        this.externalForces = new ArrayList<Force>();
         this.netForce = new Force(0, 0);
         this.mass = mass;
         this.pos = new PVector(0,0);
@@ -58,49 +59,74 @@ public abstract class Object2D {
         this.acc = new PVector(0,0);
     }
 
-    public PVector getPos(){
+    public final PVector pos(){
         return pos;
     }
 
-    public PVector getVel(){
+    public final PVector vel(){
         return vel;
     }
 
-    public PVector getAcc(){
+    public final PVector acc(){
         return acc;
     }
 
-    protected void setMass(float mass){
+    public final float mass(){
+        return mass;
+    }
+
+    public final Force friction(){ return friction; }
+
+    protected final void setMass(float mass){
         this.mass = mass;
     }
 
-    public void addExternalForce(Force force){
-        this.forces.add(force);
+    public final void setFriction(Force friction){
+        this.friction = friction;
     }
 
-    public void addExternalForces(Force... forces){
+    public final void addExternalForce(Force force){
+        this.externalForces.add(force);
+    }
+
+    public final void addExternalForces(Force... forces){
         for(Force force: forces){
-            this.forces.add(force);
+            this.externalForces.add(force);
         }
     }
 
-    public void addExternalForces(ArrayList<Force> forces){
+    public final void addExternalForces(ArrayList<Force> forces){
         for(Force force: forces){
-            this.forces.add(force);
+            this.externalForces.add(force);
         }
     }
 
-    protected void calculateNetForce(){
-        netForce = Force.sum(this.forces);
+    public final void removeExternalForce(Force force){
+        if(this.externalForces.contains(force)){
+            externalForces.remove(force);
+        }
     }
 
-    protected void updateMotionVectors(){
+    public final void clearExternalForces(){
+        this.externalForces = new ArrayList<>();
+    }
+
+    public final void calculateNetForce(){
+        netForce = Force.sum(this.externalForces);
+        if(Math.abs(friction.mag()) <= Math.abs(netForce.mag())){
+            netForce = Force.sum(netForce, friction);
+        }else{
+            netForce = friction;
+        }
+    }
+
+    protected final void updateMotionVectors(){
         pos.add(vel);
         vel.add(acc);
         acc.set(this.applyForce());
     }
 
-    protected PVector applyForce(){
+    private final PVector applyForce(){
         float xAcc = netForce.xComp() / this.mass;
         float yAcc = netForce.yComp() / this.mass;
         return new PVector(xAcc, yAcc);

@@ -17,7 +17,7 @@ public class PController extends Controller {
 
     @Override
     protected void calculateSetpoint(){
-        this.forceSetpoint.setVector(-p * (object.getPos().x - target.x), -p * (object.getPos().y - target.y));
+        this.forceSetpoint.setVector(-p * (object.pos().x - target.x), -p * (object.pos().y - target.y));
     }
 
 }

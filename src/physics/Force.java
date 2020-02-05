@@ -4,7 +4,7 @@ import processing.core.PVector;
 
 import java.util.ArrayList;
 
-public class Force{
+public final class Force{
 
     protected PVector force;
 
@@ -18,6 +18,10 @@ public class Force{
 
     public Force(float comp_x, float comp_y){
         this.force = new PVector(comp_x, comp_y);
+    }
+
+    public float mag(){
+        return this.force.mag();
     }
 
     public PVector vector(){
@@ -74,6 +78,11 @@ public class Force{
             result.addVector(force);
         }
         return result;
+    }
+
+    @Override
+    public String toString(){
+        return this.force.toString() + " mag: " + force.mag();
     }
 
 }

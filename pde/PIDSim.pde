@@ -6,7 +6,7 @@ void setup(){
   size(1200, 900);
   frameRate(3);
   
-  puck = new objects.Puck(new PVector(width/2, height/2));
+  puck = new objects.SampleObject(new PVector(width/2, height/2));
   traj = new controller.PDController(puck);
   traj.setConstants(0.1, 0.005, 1.0);
   

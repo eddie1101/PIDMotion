@@ -1,18 +1,20 @@
 package main;
 
-import controller.PController;
 import controller.PDController;
-import controller.PIDController;
 import controller.Controller;
-import objects.Puck;
+import controller.PIDController;
+import objects.SampleObject;
 import objects.Object2D;
 
+import physics.Environment;
+import physics.SampleEnvironment;
 import processing.core.PApplet;
 import processing.core.PVector;
 
 public class PIDSim extends PApplet {
-    Object2D puck;
+    Object2D object;
     Controller controller;
+    Environment environment;
     PVector target;
 
     public void settings() {
@@ -20,25 +22,33 @@ public class PIDSim extends PApplet {
     }
 
     public void setup(){
-        puck = new Puck(this, new PVector(width/2f, height/2f));
-//        controller = new PController(this, puck);
-        controller = new PDController(this, puck);
-//        controller = new PIDController(this, puck);
-
-        controller.setConstants(0.01f, 0.005f, 0.2f);
-//        target = new PVector(400, 300);
-//        controller.setTarget(target);
+        object = new SampleObject(this, new PVector(width/2f, height/2f));
+        controller = new PDController(this, object);
+        controller.setConstants(0.01f, 0.00005f, 0.2f);
+        environment = new SampleEnvironment(0.2f, 4);
+        environment.addObject(object);
     }
 
     public void draw(){
+
         background(255);
+
         controller.update();
+        environment.update();
+
         if(target != null){
             fill(255, 0, 0);
             ellipse(target.x, target.y, 10, 10);
         }
+
         fill(0);
         text("Setpoint: " + controller.getSetpoint().vector().x + " " + controller.getSetpoint().vector().y,20, 20);
+
+        if(frameCount >= 500){
+//            object.calculateNetForce();
+//            controller.update();
+        }
+
     }
 
     public void mouseReleased(){

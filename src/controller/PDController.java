@@ -17,7 +17,7 @@ public class PDController extends Controller {
 
     @Override
     protected void calculateSetpoint(){
-        this.forceSetpoint.setVector((-p * (object.getPos().x - target.x)) - (d * object.getVel().x), (-p * (object.getPos().y - target.y)) - (d * object.getVel().y));
+        this.forceSetpoint.setVector((-p * (object.pos().x - target.x)) - (d * object.vel().x), (-p * (object.pos().y - target.y)) - (d * object.vel().y));
     }
 
 }

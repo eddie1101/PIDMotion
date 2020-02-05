@@ -2,12 +2,12 @@ package objects;
 
 import processing.core.*;
 
-public class Puck extends Object2D {
+public class SampleObject extends Object2D {
 
     private final int r = 15;
 
-    public Puck(PApplet pa, PVector pos){
-        super(pa, 3, pos);
+    public SampleObject(PApplet pa, PVector pos){
+        super(pa, 1, pos);
     }
 
     public void update(){
