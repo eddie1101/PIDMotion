@@ -24,6 +24,30 @@ public class Force{
         return this.force;
     }
 
+    public Force x(){
+        return new Force(this.force.x, 0);
+    }
+
+    public PVector xVec(){
+        return new PVector(this.force.x, 0);
+    }
+
+    public Force y(){
+        return new Force(0, this.force.y);
+    }
+
+    public PVector yVec(){
+        return new PVector(0, this.force.y);
+    }
+
+    public float xComp(){
+        return this.force.x;
+    }
+
+    public float yComp(){
+        return this.force.y;
+    }
+
     public void setVector(PVector force){
         this.force.set(force);
     }
@@ -36,43 +60,20 @@ public class Force{
         this.force.add(force.vector());
     }
 
-    public Force sum_copy(Force... forces){
+    public static Force sum(ArrayList<Force> forces){
         Force result = new Force(0, 0);
         for(Force force: forces){
             result.addVector(force);
         }
-        result.addVector(this);
         return result;
     }
 
-    public Force sum_copy(ArrayList<Force> forces){
+    public static Force sum(Force... forces){
         Force result = new Force(0, 0);
         for(Force force: forces){
             result.addVector(force);
         }
-        result.addVector(this);
         return result;
-    }
-
-    public void sum(ArrayList<Force> forces){
-        for(Force force: forces){
-            this.addVector(force);
-            System.out.println("Force Vectors: " + force.vector().x + ", " + force.vector().y);
-        }
-    }
-
-    public void sum(Force... forces){
-        for(Force force: forces){
-            this.addVector(force);
-        }
-    }
-
-    public Force x(){
-        return new Force(this.force.x, 0);
-    }
-
-    public Force y(){
-        return new Force(0, this.force.y);
     }
 
 }

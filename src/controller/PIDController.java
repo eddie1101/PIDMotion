@@ -31,7 +31,7 @@ public class PIDController extends Controller {
     protected void calculateSetpoint(){
         position_error_x += (object.getPos().x - target.x);
         position_error_y += (object.getPos().y - target.y);
-        this.forceSetpoint.setVector(-p * (object.getPos().x - target.x) - (d * object.getVel().x) - (i * position_error_x), -p * (object.getPos().y - target.y) - (d * object.getVel().y) - (i * position_error_y));
+        this.forceSetpoint.setVector((-p * (object.getPos().x - target.x)) - (d * object.getVel().x) - (i * position_error_x), (-p * (object.getPos().y - target.y)) - (d * object.getVel().y) - (i * position_error_y));
     }
 
 }

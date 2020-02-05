@@ -91,7 +91,7 @@ public abstract class Object2D {
     }
 
     protected void calculateNetForce(){
-        this.netForce.sum(this.forces);
+        netForce = Force.sum(this.forces);
     }
 
     protected void updateMotionVectors(){
@@ -101,12 +101,9 @@ public abstract class Object2D {
     }
 
     protected PVector applyForce(){
-        Force x = this.netForce.x();
-        Force y = this.netForce.y();
-        float xAcc = x.vector().x / this.mass;
-        float yAcc = y.vector().y / this.mass;
-        PVector resultantAcceleration = new PVector(xAcc, yAcc);
-        return resultantAcceleration;
+        float xAcc = netForce.xComp() / this.mass;
+        float yAcc = netForce.yComp() / this.mass;
+        return new PVector(xAcc, yAcc);
     }
 
     public abstract void update();

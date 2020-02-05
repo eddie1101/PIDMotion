@@ -1,6 +1,8 @@
 package main;
 
+import controller.PController;
 import controller.PDController;
+import controller.PIDController;
 import controller.Controller;
 import objects.Puck;
 import objects.Object2D;
@@ -19,13 +21,17 @@ public class PIDSim extends PApplet {
 
     public void setup(){
         puck = new Puck(this, new PVector(width/2f, height/2f));
+//        controller = new PController(this, puck);
         controller = new PDController(this, puck);
-        controller.setConstants(0.1f, 0.005f, 1.0f);
+//        controller = new PIDController(this, puck);
+
+        controller.setConstants(0.01f, 0.005f, 0.2f);
+//        target = new PVector(400, 300);
+//        controller.setTarget(target);
     }
 
     public void draw(){
         background(255);
-        System.out.println();
         controller.update();
         if(target != null){
             fill(255, 0, 0);
